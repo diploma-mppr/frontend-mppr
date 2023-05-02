@@ -427,7 +427,6 @@ function compareVars (matrix: Array<Array<number>>) {
     return varsVars
 }
 
-
 function paretoCheck (matrix: Array<Array<number>>)
 {
     let result: Array<boolean> = [true,true,true]; //по умолчанию - все оптимальны
