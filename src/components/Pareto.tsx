@@ -16,6 +16,7 @@ import {
     GridReadyEvent,
     ValueGetterParams
 } from 'ag-grid-community';
+import {UserDataI} from "./Navbar";
 
 export interface ParetoData {
     Id:         number;
@@ -28,6 +29,34 @@ export interface ParetoData {
 export type ParetoDataI = ParetoData[]|null
 
 export const Pareto: React.FC = () => {
+    const [userData, setUserDataData] = useState<UserDataI>(null)
+
+    useEffect(() => {
+            if (userData) {
+                return
+            }
+            (async ()=> {
+
+                const response = await fetch(`http://127.0.0.1:8000/api/get_user`,{
+                    method:'GET',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    }
+                })
+                if(response.ok){
+                    console.log('success')
+                    const responseBody = await response.json();
+                    setUserDataData(responseBody)
+                } else{
+                    console.log('prosas')
+                }
+
+            }) ()
+        },
+    )
+
+    const [dataId, setDataId] = useState(0)
 
     const [paretoData, setParetoData] = useState<ParetoDataI>(null)
     const [searchParams] = useSearchParams();
@@ -65,6 +94,8 @@ export const Pareto: React.FC = () => {
                         console.log('success')
                         const responseBody = await response.json();
                         setParetoData(responseBody)
+                        setDataId(responseBody.id)
+                        console.log("methodId: ", dataId.valueOf())
                         console.log(responseBody)
                         if (responseBody.var1 && responseBody.var2 && responseBody.var3 && responseBody.name) {
                             setInputOne(responseBody.name)
@@ -86,7 +117,6 @@ export const Pareto: React.FC = () => {
     )
 
     let dataPareto: any[] = [];
-
 
     const handleSetPareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
@@ -120,11 +150,7 @@ export const Pareto: React.FC = () => {
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        let id = 0;
-        paretoData?.map((item: ParetoData, i:number)=>{
-            console.log(item.Id)
-            id = item.Id
-        })
+        console.log("methodId: ", dataId)
         const response = await fetch('http://127.0.0.1:8000/api/delete_pareto',{
             method:'POST',
             credentials: "include",
@@ -132,7 +158,39 @@ export const Pareto: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
-                "id": id,
+                "id": dataId,
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleUpdatePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        for (let i=0; i<3; i++) {
+            dataPareto.push(Number(rowData[i].var1))
+            dataPareto.push(Number(rowData[i].var2))
+            dataPareto.push(Number(rowData[i].var3))
+        }
+        console.log(dataPareto)
+        console.log("methodId: ", dataId)
+        const response = await fetch('http://127.0.0.1:8000/api/update_pareto',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataId,
+                "name": inputOne,
+                "var1": [dataPareto[0],dataPareto[1],dataPareto[2]],
+                "var2": [dataPareto[3],dataPareto[4],dataPareto[5]],
+                "var3": [dataPareto[6],dataPareto[7],dataPareto[8]]
             })
         })
         if(response.ok){
@@ -259,24 +317,28 @@ export const Pareto: React.FC = () => {
                                id="customRange"/>
                         <strong>{range}</strong>
                     </div>
+                    {
+                        userData && (
+                            <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
+                                {
+                                    paretoData && (
+                                        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
+                                    )
+                                }
 
-                    <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
-                        {/*{*/}
-                        {/*    paretoData && (*/}
-                        {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
-                        {/*    )*/}
-                        {/*}*/}
-                        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
-                        <span className="input-group-text">Название: </span>
-                        {/*aria-label="Amount (to the nearest dollar)"*/}
-                        <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
-                        {
-                            paretoData && (
-                                <button type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
-                            )
-                        }
-                        <button onClick={handleSetPareto} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
-                    </div>
+                                <span className="input-group-text">Название: </span>
+                                <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
+
+                                {
+                                    paretoData && (
+                                        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
+                                    )
+                                }
+
+                                <button onClick={handleSetPareto} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
+                            </div>
+                        )
+                    }
                 </div>
 
             <div className="show" >

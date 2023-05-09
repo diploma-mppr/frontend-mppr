@@ -5,6 +5,7 @@ import {ColDef} from "ag-grid-community";
 import DataGrid from 'react-data-grid';
 import {ParetoData, ParetoDataI} from "./Pareto";
 import {useSearchParams} from "react-router-dom";
+import {UserDataI} from "./Navbar";
 
 export interface BaseCriteriaData {
     Id:         number;
@@ -15,6 +16,32 @@ export interface BaseCriteriaData {
 export type BaseCriteriaDataI = BaseCriteriaData[]|null
 
 export const BaseCriteria: React.FC = () => {
+    const [userData, setUserDataData] = useState<UserDataI>(null)
+
+    useEffect(() => {
+            if (userData) {
+                return
+            }
+            (async ()=> {
+
+                const response = await fetch(`http://127.0.0.1:8000/api/get_user`,{
+                    method:'GET',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    }
+                })
+                if(response.ok){
+                    console.log('success')
+                    const responseBody = await response.json();
+                    setUserDataData(responseBody)
+                } else{
+                    console.log('prosas')
+                }
+
+            }) ()
+        },
+    )
 
     const [BaseCriteriaData, setBaseCriteriaData] = useState<BaseCriteriaDataI>(null)
     const [searchParams] = useSearchParams();
@@ -259,11 +286,28 @@ export const BaseCriteria: React.FC = () => {
                         <strong>{range}</strong>
                     </div>
 
-                    <div className="input-group mb-3 col p-1">
-                        <span className="input-group-text">Название: </span>
-                        <input value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
-                        <button onClick={handleSetBasicCriteria} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
-                    </div>
+                    {
+                        userData && (
+                            <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
+                                {/*{*/}
+                                {/*    paretoData && (*/}
+                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
+                                {/*    )*/}
+                                {/*}*/}
+
+                                <span className="input-group-text">Название: </span>
+                                <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
+
+                                {/*{*/}
+                                {/*    paretoData && (*/}
+                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
+                                {/*    )*/}
+                                {/*}*/}
+
+                                <button onClick={handleSetBasicCriteria} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
+                            </div>
+                        )
+                    }
                 </div>
 
                 <h3>Таблица, показывающая, сколько баллов весят небазовые критерии</h3>

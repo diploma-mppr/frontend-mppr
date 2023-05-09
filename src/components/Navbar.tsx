@@ -40,6 +40,7 @@ export const Navbar = () => {
         event.preventDefault();
         const response = await fetch('http://127.0.0.1:8000/api/logout',{
             method:'GET',
+            credentials: "include",
             headers:{
                 "Content-Type": "application/json; charset=UTF-8"
             },

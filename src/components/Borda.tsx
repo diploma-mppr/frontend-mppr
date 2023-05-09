@@ -4,6 +4,7 @@ import {ColDef} from "ag-grid-community";
 import DataGrid from "react-data-grid";
 import {useSearchParams} from "react-router-dom";
 import {ParetoDataI} from "./Pareto";
+import {UserDataI} from "./Navbar";
 
 export interface BordaData {
     Id:         number;
@@ -17,6 +18,32 @@ export interface BordaData {
 export type BordaDataI = BordaData[]|null
 
 export const Borda: React.FC = () => {
+    const [userData, setUserDataData] = useState<UserDataI>(null)
+
+    useEffect(() => {
+            if (userData) {
+                return
+            }
+            (async ()=> {
+
+                const response = await fetch(`http://127.0.0.1:8000/api/get_user`,{
+                    method:'GET',
+                    credentials: "include",
+                    headers: {
+                        "Content-Type": "application/json; charset=UTF-8"
+                    }
+                })
+                if(response.ok){
+                    console.log('success')
+                    const responseBody = await response.json();
+                    setUserDataData(responseBody)
+                } else{
+                    console.log('prosas')
+                }
+
+            }) ()
+        },
+    )
 
     const [bordaData, setBordaData] = useState<BordaDataI>(null)
     const [searchParams] = useSearchParams();
@@ -233,12 +260,33 @@ export const Borda: React.FC = () => {
                                id="customRange"/>
                         <strong>{range}</strong>
                     </div>
+                    {
+                        userData && (
+                            <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
+                                {/*{*/}
+                                {/*    paretoData && (*/}
+                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
+                                {/*    )*/}
+                                {/*}*/}
 
-                    <div className="input-group mb-3 col p-1">
-                        <span className="input-group-text">Название: </span>
-                        <input value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
-                        <button onClick={handlerSetBorda} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
-                    </div>
+                                <span className="input-group-text">Название: </span>
+                                <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
+
+                                {/*{*/}
+                                {/*    paretoData && (*/}
+                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
+                                {/*    )*/}
+                                {/*}*/}
+
+                                <button onClick={handlerSetBorda} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
+                            </div>
+                        )
+                    }
+                    {/*<div className="input-group mb-3 col p-1">*/}
+                    {/*    <span className="input-group-text">Название: </span>*/}
+                    {/*    <input value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>*/}
+                    {/*    <button onClick={handlerSetBorda} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>*/}
+                    {/*</div>*/}
                 </div>
 
                 <h3>Таблица для подсчёта мнений экспертов</h3>
