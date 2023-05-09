@@ -43,6 +43,8 @@ export const BaseCriteria: React.FC = () => {
         },
     )
 
+    const [dataBaseCriteriaId, setDataBaseCriteriaId] = useState(0)
+
     const [BaseCriteriaData, setBaseCriteriaData] = useState<BaseCriteriaDataI>(null)
     const [searchParams] = useSearchParams();
 
@@ -74,6 +76,7 @@ export const BaseCriteria: React.FC = () => {
                     if(response.ok){
                         console.log('success')
                         const responseBody = await response.json();
+                        setDataBaseCriteriaId(responseBody.id)
                         setBaseCriteriaData(responseBody)
                         console.log(responseBody)
                         if (responseBody.var1 && responseBody.name) {
@@ -125,6 +128,74 @@ export const BaseCriteria: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
+                "name": inputOne,
+                "var1": [
+                    dataBasicCriteria[0],
+                    dataBasicCriteria[1],
+                    dataBasicCriteria[2],
+                    dataBasicCriteria[3],
+                    dataBasicCriteria[4],
+                    dataBasicCriteria[5],
+                    dataBasicCriteria[6],
+                    dataBasicCriteria[7],
+                    dataBasicCriteria[8],
+                    dataBasicCriteria[9]
+                ],
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleDeleteBasicCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        console.log("methodId: ", dataBaseCriteriaId)
+        const response = await fetch('http://127.0.0.1:8000/api/delete_base_criteria',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataBaseCriteriaId,
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleUpdateBasicCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        dataBasicCriteria.push(Boolean(rowData[0].crit1))
+        dataBasicCriteria.push(Boolean(rowData[0].crit2))
+        dataBasicCriteria.push(Boolean(rowData[0].crit3))
+        dataBasicCriteria.push(Boolean(rowData[0].crit4))
+        dataBasicCriteria.push(Boolean(rowData[0].crit5))
+        dataBasicCriteria.push(Boolean(rowData[0].crit6))
+        dataBasicCriteria.push(Boolean(rowData[0].crit7))
+        dataBasicCriteria.push(Boolean(rowData[0].crit8))
+        dataBasicCriteria.push(Boolean(rowData[0].crit9))
+        dataBasicCriteria.push(Boolean(rowData[0].crit10))
+
+        console.log(dataBasicCriteria)
+        const response = await fetch('http://127.0.0.1:8000/api/update_base_criteria',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataBaseCriteriaId,
                 "name": inputOne,
                 "var1": [
                     dataBasicCriteria[0],
@@ -289,20 +360,20 @@ export const BaseCriteria: React.FC = () => {
                     {
                         userData && (
                             <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    BaseCriteriaData && (
+                                        <button onClick={handleDeleteBasicCriteria} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
+                                    )
+                                }
 
                                 <span className="input-group-text">Название: </span>
                                 <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
 
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    BaseCriteriaData && (
+                                        <button onClick={handleUpdateBasicCriteria} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
+                                    )
+                                }
 
                                 <button onClick={handleSetBasicCriteria} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
                             </div>

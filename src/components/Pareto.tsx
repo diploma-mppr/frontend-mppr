@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {useState, useCallback, useMemo, useRef, MouseEventHandler, useEffect} from "react";
+
 import { useSearchParams } from "react-router-dom";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -56,7 +57,7 @@ export const Pareto: React.FC = () => {
         },
     )
 
-    const [dataId, setDataId] = useState(0)
+    const [dataParetoId, setDataParetoId] = useState(0)
 
     const [paretoData, setParetoData] = useState<ParetoDataI>(null)
     const [searchParams] = useSearchParams();
@@ -94,8 +95,8 @@ export const Pareto: React.FC = () => {
                         console.log('success')
                         const responseBody = await response.json();
                         setParetoData(responseBody)
-                        setDataId(responseBody.id)
-                        console.log("methodId: ", dataId.valueOf())
+                        setDataParetoId(responseBody.id)
+                        console.log("methodId: ", dataParetoId.valueOf())
                         console.log(responseBody)
                         if (responseBody.var1 && responseBody.var2 && responseBody.var3 && responseBody.name) {
                             setInputOne(responseBody.name)
@@ -150,7 +151,7 @@ export const Pareto: React.FC = () => {
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        console.log("methodId: ", dataId)
+        console.log("methodId: ", dataParetoId)
         const response = await fetch('http://127.0.0.1:8000/api/delete_pareto',{
             method:'POST',
             credentials: "include",
@@ -158,7 +159,7 @@ export const Pareto: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
-                "id": dataId,
+                "id": dataParetoId,
             })
         })
         if(response.ok){
@@ -178,7 +179,7 @@ export const Pareto: React.FC = () => {
             dataPareto.push(Number(rowData[i].var3))
         }
         console.log(dataPareto)
-        console.log("methodId: ", dataId)
+        console.log("methodId: ", dataParetoId)
         const response = await fetch('http://127.0.0.1:8000/api/update_pareto',{
             method:'POST',
             credentials: "include",
@@ -186,7 +187,7 @@ export const Pareto: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
-                "id": dataId,
+                "id": dataParetoId,
                 "name": inputOne,
                 "var1": [dataPareto[0],dataPareto[1],dataPareto[2]],
                 "var2": [dataPareto[3],dataPareto[4],dataPareto[5]],

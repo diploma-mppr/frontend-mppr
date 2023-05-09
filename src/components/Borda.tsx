@@ -45,6 +45,8 @@ export const Borda: React.FC = () => {
         },
     )
 
+    const [dataBordaId, setDataBordaId] = useState(0)
+
     const [bordaData, setBordaData] = useState<BordaDataI>(null)
     const [searchParams] = useSearchParams();
 
@@ -79,6 +81,7 @@ export const Borda: React.FC = () => {
                     if(response.ok){
                         console.log('success')
                         const responseBody = await response.json();
+                        setDataBordaId(responseBody.id)
                         setBordaData(responseBody)
                         console.log(responseBody)
 
@@ -119,13 +122,71 @@ export const Borda: React.FC = () => {
 
         console.log(dataBorda)
 
-        const response = await fetch('http://127.0.0.1:8000/api/set_nanson',{
+        const response = await fetch('http://127.0.0.1:8000/api/set_borda',{
             method:'POST',
             credentials: "include",
             headers:{
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
+                "name": inputOne,
+                "var1": [
+                    dataBorda[0],
+                    dataBorda[1],
+                    dataBorda[2],
+                    dataBorda[3],
+                    dataBorda[4],
+                    dataBorda[5],
+                ],
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleDeleteBorda:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        console.log("methodId: ", dataBordaId)
+        const response = await fetch('http://127.0.0.1:8000/api/delete_borda',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataBordaId,
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleUpdateBorda:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        for (let i = 0; i < 6; i++) {
+            dataBorda.push(Number(rowData[i].count))
+        }
+
+        console.log(dataBorda)
+
+        const response = await fetch('http://127.0.0.1:8000/api/update_borda',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataBordaId,
                 "name": inputOne,
                 "var1": [
                     dataBorda[0],
@@ -263,20 +324,20 @@ export const Borda: React.FC = () => {
                     {
                         userData && (
                             <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    dataBorda && (
+                                        <button onClick={handleDeleteBorda} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
+                                    )
+                                }
 
                                 <span className="input-group-text">Название: </span>
                                 <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
 
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    dataBorda && (
+                                        <button onClick={handleUpdateBorda} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
+                                    )
+                                }
 
                                 <button onClick={handlerSetBorda} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
                             </div>

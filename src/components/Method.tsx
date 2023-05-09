@@ -39,7 +39,7 @@ export const Method: React.FC = () => {
     )
 
     if (!data) {
-        return <div>posos</div>
+        return <div><h1>Методов пока нет</h1></div>
     }
 
     return (

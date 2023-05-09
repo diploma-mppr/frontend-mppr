@@ -1,4 +1,6 @@
 import React, {MouseEventHandler, useState} from "react";
+import { useNavigate } from "react-router-dom";
+import { redirect } from "react-router-dom";
 
 export const Register: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
@@ -25,7 +27,7 @@ export const Register: React.FC = () => {
     //         console.log('prosas')
     //     }
     // }
-
+    const navigate = useNavigate();
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         const response = await fetch('http://127.0.0.1:8000/api/register',{
@@ -43,6 +45,9 @@ export const Register: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+
+            navigate("/");
+            // window.location.href = "/";
         } else{
             console.log('prosas')
         }

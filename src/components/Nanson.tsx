@@ -46,6 +46,8 @@ export const Nanson: React.FC = () => {
         },
     )
 
+    const [dataNansonId, setDataNansonId] = useState(0)
+
     const [nansonData, setNansonData] = useState<NansonDataI>(null)
     const [searchParams] = useSearchParams();
 
@@ -80,6 +82,7 @@ export const Nanson: React.FC = () => {
                     if(response.ok){
                         console.log('success')
                         const responseBody = await response.json();
+                        setDataNansonId(responseBody.id)
                         setNansonData(responseBody)
                         console.log(responseBody)
 
@@ -127,6 +130,65 @@ export const Nanson: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
+                "name": inputOne,
+                "var1": [
+                    dataNanson[0],
+                    dataNanson[1],
+                    dataNanson[2],
+                    dataNanson[3],
+                    dataNanson[4],
+                    dataNanson[5],
+                ],
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleDeleteNanson:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        console.log("methodId: ", dataNansonId)
+        const response = await fetch('http://127.0.0.1:8000/api/delete_nanson',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataNansonId,
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleUpdateNanson:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+
+        for (let i = 0; i < 6; i++) {
+            dataNanson.push(Number(rowData[i].count))
+        }
+
+        console.log(dataNanson)
+
+        const response = await fetch('http://127.0.0.1:8000/api/update_nanson',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataNansonId,
                 "name": inputOne,
                 "var1": [
                     dataNanson[0],
@@ -320,20 +382,20 @@ export const Nanson: React.FC = () => {
                     {
                         userData && (
                             <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    nansonData && (
+                                        <button onClick={handleDeleteNanson} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
+                                    )
+                                }
 
                                 <span className="input-group-text">Название: </span>
                                 <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
 
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    nansonData && (
+                                        <button onClick={handleUpdateNanson} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
+                                    )
+                                }
 
                                 <button onClick={handlerSetNanson} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
                             </div>

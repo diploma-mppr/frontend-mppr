@@ -49,6 +49,7 @@ export const Navbar = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            window.location.href = "/";
         } else{
             console.log('prosas')
         }

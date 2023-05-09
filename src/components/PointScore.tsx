@@ -43,6 +43,8 @@ export const PointScore: React.FC = () => {
         },
     )
 
+    const [dataPointScoreId, setDataPointScoreId] = useState(0)
+
     const [pointScoreData, setPointScoreData] = useState<PointScoreDataI>(null)
     const [searchParams] = useSearchParams();
 
@@ -74,6 +76,7 @@ export const PointScore: React.FC = () => {
                     if(response.ok){
                         console.log('success')
                         const responseBody = await response.json();
+                        setDataPointScoreId(responseBody.id)
                         setPointScoreData(responseBody)
                         console.log(responseBody)
                         if (responseBody.name && responseBody.var1) {
@@ -131,6 +134,76 @@ export const PointScore: React.FC = () => {
                 "Content-Type": "application/json; charset=UTF-8"
             },
             body: JSON.stringify({
+                "name": inputOne,
+                "var1": [
+                    dataPointScore[0],
+                    dataPointScore[1],
+                    dataPointScore[2],
+                    dataPointScore[3],
+                    dataPointScore[4],
+                    dataPointScore[5],
+                    dataPointScore[6],
+                    dataPointScore[7],
+                    dataPointScore[8],
+                    dataPointScore[9]
+                ],
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleDeletePointScore:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+        console.log("methodId: ", dataPointScoreId)
+        const response = await fetch('http://127.0.0.1:8000/api/delete_point_score',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataPointScoreId,
+            })
+        })
+        if(response.ok){
+            console.log('success')
+            const responseBody = await response.json();
+            console.log(responseBody)
+        } else{
+            console.log('prosas')
+        }
+    }
+
+    const handleUpdatePointScore:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        event.preventDefault();
+
+        dataPointScore.push(Number(rowData[0].crit1))
+        dataPointScore.push(Number(rowData[0].crit2))
+        dataPointScore.push(Number(rowData[0].crit3))
+        dataPointScore.push(Number(rowData[0].crit4))
+        dataPointScore.push(Number(rowData[0].crit5))
+        dataPointScore.push(Number(rowData[0].crit6))
+        dataPointScore.push(Number(rowData[0].crit7))
+        dataPointScore.push(Number(rowData[0].crit8))
+        dataPointScore.push(Number(rowData[0].crit9))
+        dataPointScore.push(Number(rowData[0].crit10))
+
+        console.log(dataPointScore)
+
+        const response = await fetch('http://127.0.0.1:8000/api/update_point_score',{
+            method:'POST',
+            credentials: "include",
+            headers:{
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify({
+                "id": dataPointScoreId,
                 "name": inputOne,
                 "var1": [
                     dataPointScore[0],
@@ -291,20 +364,20 @@ export const PointScore: React.FC = () => {
                     {
                         userData && (
                             <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleDeletePareto} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    pointScoreData && (
+                                        <button onClick={handleDeletePointScore} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
+                                    )
+                                }
 
                                 <span className="input-group-text">Название: </span>
                                 <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
 
-                                {/*{*/}
-                                {/*    paretoData && (*/}
-                                {/*        <button onClick={handleUpdatePareto} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>*/}
-                                {/*    )*/}
-                                {/*}*/}
+                                {
+                                    pointScoreData && (
+                                        <button onClick={handleUpdatePointScore} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
+                                    )
+                                }
 
                                 <button onClick={handleSetPointScore} type="button" className="btn btn-primary" id="button-addon2">Сохранить</button>
                             </div>
