@@ -123,7 +123,7 @@ export const WeightedSum: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataWeightedSumVar1: any[] = [];
@@ -357,8 +357,9 @@ export const WeightedSum: React.FC = () => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
 
+    console.log(onBtExport)
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'crits', headerName: "Критерий" },
         { field: 'weights', headerName: "Вес критерия" },
         { field: 'var1', headerName: "Вариант 1" },
@@ -374,6 +375,7 @@ export const WeightedSum: React.FC = () => {
     }, []);
 
     let criteriasNum: number = 10;
+    console.log(criteriasNum)
 
     function criteriasWeight() {
 

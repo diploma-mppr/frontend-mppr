@@ -1,13 +1,13 @@
 import React from "react";
 
-import {Route, Router, Routes, BrowserRouter} from "react-router-dom";
-import {Pareto} from "../components/Pareto";
-import {BaseCriteria} from "../components/BaseCriteria";
-import {PointScore} from "../components/PointScore";
-import {PairComparisonCriterias} from "../components/PairComparisonCriterias";
-import {Borda} from "../components/Borda";
-import {Nanson} from "../components/Nanson";
-import {WeightedSum} from "../components/WeightedSum";
+// import {Route, Router, Routes, BrowserRouter} from "react-router-dom";
+// import {Pareto} from "../components/Pareto";
+// import {BaseCriteria} from "../components/BaseCriteria";
+// import {PointScore} from "../components/PointScore";
+// import {PairComparisonCriterias} from "../components/PairComparisonCriterias";
+// import {Borda} from "../components/Borda";
+// import {Nanson} from "../components/Nanson";
+// import {WeightedSum} from "../components/WeightedSum";
 
 import {Hub} from "../components/Hub";
 

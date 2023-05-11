@@ -3,7 +3,6 @@ import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from "react-data-grid";
 import {useSearchParams} from "react-router-dom";
-import {ParetoDataI} from "./Pareto";
 import {UserDataI} from "./Navbar";
 
 export interface BordaData {
@@ -108,7 +107,7 @@ export const Borda: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataBorda: any[] = [];
@@ -217,7 +216,9 @@ export const Borda: React.FC = () => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    console.log(onBtExport)
+
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'count', headerName: "Кол-во экспертов", editable: true, width: 240 },
         { field: 'place1', headerName: "1 место" },
         { field: 'place2', headerName: "2 место" },
@@ -230,7 +231,7 @@ export const Borda: React.FC = () => {
         };
     }, []);
 
-    let variants: number = 3; //количество вариантов
+    //let variants: number = 3; //количество вариантов
 
 
     let vars: Array<Array<number>> = [[3, 2, 1], [3, 1, 2],[2, 3, 1], [1, 3, 2], [2,1,3], [1,2,3]]; //все возможные варианты расстановки мест
@@ -380,21 +381,21 @@ export const Borda: React.FC = () => {
 }
 
 
-function bordaPairComparison (vars: Array<Array<number>>, expsVars: Array<number>)
-{
-    let pairComparison: Array<Array<number>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
-
-    for (let k = 0; k < 6; k++) {
-        for (let i = 0; i < 3; i++) {
-            for (let j = 0; j < 3; j++) {
-                if (vars[k][i] > vars[k][j]) {
-                    pairComparison[i][j] = pairComparison[i][j] + expsVars[k];
-                }
-            }
-        }
-    }
-    return pairComparison;
-}
+// function bordaPairComparison (vars: Array<Array<number>>, expsVars: Array<number>)
+// {
+//     let pairComparison: Array<Array<number>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]
+//
+//     for (let k = 0; k < 6; k++) {
+//         for (let i = 0; i < 3; i++) {
+//             for (let j = 0; j < 3; j++) {
+//                 if (vars[k][i] > vars[k][j]) {
+//                     pairComparison[i][j] = pairComparison[i][j] + expsVars[k];
+//                 }
+//             }
+//         }
+//     }
+//     return pairComparison;
+// }
 
 
 function countBordaPoints (expsVars: Array<number>, vars: Array<Array<number>>)

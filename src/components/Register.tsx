@@ -1,6 +1,5 @@
 import React, {MouseEventHandler, useState} from "react";
 import { useNavigate } from "react-router-dom";
-import { redirect } from "react-router-dom";
 
 export const Register: React.FC = () => {
     const [inputOne, setInputOne] = useState('');

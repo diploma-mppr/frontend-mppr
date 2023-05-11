@@ -1,9 +1,7 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {Hub} from "./Hub";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from "react-data-grid";
-import {ParetoData, ParetoDataI} from "./Pareto";
 import {useSearchParams} from "react-router-dom";
 import {UserDataI} from "./Navbar";
 
@@ -105,7 +103,7 @@ export const PointScore: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataPointScore: any[] = [];
@@ -240,7 +238,9 @@ export const PointScore: React.FC = () => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    console.log(onBtExport)
+
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'crit1', headerName: "Критерий 1" },
         { field: 'crit2', headerName: "Критерий 2" },
         { field: 'crit3', headerName: "Критерий 3" },
@@ -254,6 +254,7 @@ export const PointScore: React.FC = () => {
     ]);
 
     let criteriasNum: number = 10;
+    console.log(criteriasNum)
 
     function criteriasPoints() {
         let criteriasPoints: Array<number> = [100, 75, 75, 75, 75, 50, 100, 100, 50, 50];

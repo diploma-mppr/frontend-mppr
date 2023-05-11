@@ -1,9 +1,7 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {Hub} from "./Hub";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from "react-data-grid";
-import {ParetoData, ParetoDataI} from "./Pareto";
 import {useSearchParams} from "react-router-dom";
 import {UserDataI} from "./Navbar";
 
@@ -109,7 +107,7 @@ export const Nanson: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataNanson: any[] = [];
@@ -219,17 +217,19 @@ export const Nanson: React.FC = () => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
 
-    const [variants, setVariants] = useState([1, 1, 1]);
+    console.log(onBtExport)
+
+    // const [variants, setVariants] = useState([1, 1, 1]);
 
 
-    const [columnDefsStepTwo, setColumnDefsStepTwo] = useState<ColDef[]>([
+    const [columnDefsStepTwo] = useState<ColDef[]>([
         { field: 'varName', headerName: "Вариант"},
         { field: 'comparison1', headerName: "Вариант 1" },
         { field: 'comparison2', headerName: "Вариант 2" },
         { field: 'comparison3', headerName: "Вариант 3" }
     ]);
 
-    const [rowDataStepTwo, setRowDataStepTwo] = useState<any[]>(
+    const [rowDataStepTwo] = useState<any[]>(
         [
             {   "varName": "Вариант 1",
                 "comparison1": reduceMatrix(nansonPairComparison(expsVars(), vars), findWorstOption(countNansonPoints(expsVars(), vars)))[0][0],
@@ -254,7 +254,7 @@ export const Nanson: React.FC = () => {
         return expsVars
     }
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'count', headerName: "Кол-во экспертов", editable: true, width: 240 },
         { field: 'place1', headerName: "1 место" },
         { field: 'place2', headerName: "2 место" },
@@ -517,7 +517,7 @@ function findWorstOption(pointArray: Array<number>)
     let worstOption: number = 0;
 
     for (let i = 0; i < pointArray.length; i++) {
-        if (pointArray[i] < pointArray[worstOption] && pointArray[i] != 0) {
+        if (pointArray[i] < pointArray[worstOption] && pointArray[i] !== 0) {
             worstOption = i;
         }
     }
@@ -526,17 +526,17 @@ function findWorstOption(pointArray: Array<number>)
 }
 
 
-function reduceMatrixWithSplice(matrix: Array<Array<number>>, unwantedOption: number)
-{
-    let newMatrix: Array<Array<number>> = matrix;
-    newMatrix.splice(unwantedOption, 1)
-
-    for (let i = 0; i < matrix.length; i++) {
-        newMatrix[i].splice(unwantedOption, 1)
-    }
-
-    return newMatrix
-}
+// function reduceMatrixWithSplice(matrix: Array<Array<number>>, unwantedOption: number)
+// {
+//     let newMatrix: Array<Array<number>> = matrix;
+//     newMatrix.splice(unwantedOption, 1)
+//
+//     for (let i = 0; i < matrix.length; i++) {
+//         newMatrix[i].splice(unwantedOption, 1)
+//     }
+//
+//     return newMatrix
+// }
 
 function reduceMatrix(matrix: Array<Array<number>>, unwantedOption: number)
 {

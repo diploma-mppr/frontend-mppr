@@ -1,7 +1,4 @@
-'use strict';
-
 import React, {useState, useCallback, useMemo, useRef, MouseEventHandler, useEffect} from "react";
-
 import { useSearchParams } from "react-router-dom";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -11,11 +8,11 @@ import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 import {
     ColDef,
-    ColGroupDef,
-    Grid,
-    GridOptions,
-    GridReadyEvent,
-    ValueGetterParams
+    // ColGroupDef,
+    // Grid,
+    // GridOptions,
+    // GridReadyEvent,
+    // ValueGetterParams
 } from 'ag-grid-community';
 import {UserDataI} from "./Navbar";
 
@@ -100,7 +97,7 @@ export const Pareto: React.FC = () => {
                         console.log(responseBody)
                         if (responseBody.var1 && responseBody.var2 && responseBody.var3 && responseBody.name) {
                             setInputOne(responseBody.name)
-                            Object.keys(responseBody).map((item: any, i: number) => {
+                            Object.keys(responseBody).map(() => {
                                 const test = [
                                     {"crits":"Критерий 1", "var1": responseBody.var1[0],"var2": responseBody.var1[1], "var3": responseBody.var1[2]},
                                     {"crits":"Критерий 2", "var1": responseBody.var2[0],"var2": responseBody.var2[1], "var3": responseBody.var2[2]},
@@ -114,7 +111,7 @@ export const Pareto: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataPareto: any[] = [];
@@ -205,7 +202,7 @@ export const Pareto: React.FC = () => {
 
     let critsVars: Array<Array<number>> = [[3, 2, 1], [1, 2, 3], [3, 2, 3]];
 
-    const [critsVarsCols, setCritsVarsCols] = useState<ColDef[]>([
+    const [critsVarsCols] = useState<ColDef[]>([
         { field: 'Crits', headerName: '' },
         { field: 'Var1', headerName: 'Вариант 1', editable: false},
         { field: 'Var2', headerName: 'Вариант 2', editable: false},
@@ -217,6 +214,8 @@ export const Pareto: React.FC = () => {
         { crits: 'Критерий 2', var1: critsVars[0][1], var2: critsVars[1][1], var3: critsVars[2][1]},
         { crits: 'Критерий 3', var1: critsVars[0][2], var2: critsVars[1][2], var3: critsVars[2][2]},
     ];
+
+    console.log(critsVarsRows)
 
 
     const gridRef = useRef<AgGridReact>(null);
@@ -230,7 +229,7 @@ export const Pareto: React.FC = () => {
     //         {"crits":"Критерий 3", "var1": 0,"var2": 0, "var3": 0}]
     // );
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'crits', headerName: "Критерии", editable: false },
         { field: 'var1', headerName: "Вариант 1", editable: true  },
         { field: 'var2', headerName: "Вариант 2", editable: true  },
@@ -260,6 +259,8 @@ export const Pareto: React.FC = () => {
     const onBtExport = useCallback(() => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
+
+    console.log(onBtExport)
 
     //количество отображаемых шагов
     const [range, setRange] = useState('1');
@@ -413,54 +414,53 @@ export const Pareto: React.FC = () => {
 
 
 
-function rowsToMatrix(rows: any){
-    let matrix: Array<Array<number>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+// function rowsToMatrix(rows: any){
+//     let matrix: Array<Array<number>> = [[0, 0, 0], [0, 0, 0], [0, 0, 0]];
+//
+//     matrix[0][0] = rows[0].Var1;
+//     matrix[0][1] = rows[1].Var1;
+//     matrix[0][2] = rows[2].Var1;
+//
+//     matrix[1][0] = rows[0].Var2;
+//     matrix[1][1] = rows[1].Var2;
+//     matrix[1][2] = rows[2].Var2;
+//
+//     matrix[2][0] = rows[0].Var3;
+//     matrix[2][1] = rows[1].Var3;
+//     matrix[2][2] = rows[2].Var3;
+//
+//     return matrix;
+// }
 
-    matrix[0][0] = rows[0].Var1;
-    matrix[0][1] = rows[1].Var1;
-    matrix[0][2] = rows[2].Var1;
+// function printmatrix(matrix: Array<Array<number>>) //приводим всю матрицу в строку
+// {
+//     let printedMatrix: string = "";
+//
+//     for (let i = 0; i < matrix.length; i++){
+//         printedMatrix = printedMatrix + "\n | ";
+//         for (let j = 0; j < matrix[i].length; j++){
+//             printedMatrix = printedMatrix + matrix[i][j] + " ";
+//         }
+//     }
+//
+//     return printedMatrix;
+// }
 
-    matrix[1][0] = rows[0].Var2;
-    matrix[1][1] = rows[1].Var2;
-    matrix[1][2] = rows[2].Var2;
-
-    matrix[2][0] = rows[0].Var3;
-    matrix[2][1] = rows[1].Var3;
-    matrix[2][2] = rows[2].Var3;
-
-    return matrix;
-}
-
-function printmatrix(matrix: Array<Array<number>>) //приводим всю матрицу в строку
-{
-    let printedMatrix: string = "";
-
-    for (let i = 0; i < matrix.length; i++){
-        printedMatrix = printedMatrix + "\n | ";
-        for (let j = 0; j < matrix[i].length; j++){
-            printedMatrix = printedMatrix + matrix[i][j] + " ";
-        }
-    }
-
-    return printedMatrix;
-}
-
-function printBoolArray(boolArray: Array<Boolean>) //приводим в строку
-{
-    let printArray: String = "";
-    for (let i = 0; i < 3; i++)
-    {
-        if (boolArray[i]) {
-            printArray = printArray + "1 ";
-        }
-        else
-        {
-            printArray = printArray + "0 ";
-        }
-    }
-    return printArray;
-}
-
+// function printBoolArray(boolArray: Array<Boolean>) //приводим в строку
+// {
+//     let printArray: String = "";
+//     for (let i = 0; i < 3; i++)
+//     {
+//         if (boolArray[i]) {
+//             printArray = printArray + "1 ";
+//         }
+//         else
+//         {
+//             printArray = printArray + "0 ";
+//         }
+//     }
+//     return printArray;
+// }
 
 function compareVars (matrix: Array<Array<number>>) {
 
@@ -470,7 +470,7 @@ function compareVars (matrix: Array<Array<number>>) {
     {
         for(let k = 0; k < 3; k++) //перебираем варианты, с которыми сравниваем
         {
-            if (i == k) //если сравниваем вариант с самим собой
+            if (i === k) //если сравниваем вариант с самим собой
             {
                 varsVars[i][k] = 0; //то там ноль
             }
