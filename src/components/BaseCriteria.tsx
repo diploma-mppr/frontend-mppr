@@ -91,7 +91,7 @@ export const BaseCriteria: React.FC = () => {
                         }
                     })
                     if(response.ok){
-                        console.log('success')
+                        console.log('get success')
                         const responseBody = await response.json();
                         setDataBaseCriteriaId(responseBody.id)
                         setBaseCriteriaData(responseBody)
@@ -114,7 +114,7 @@ export const BaseCriteria: React.FC = () => {
                             setRowData(test)
                         }
                     } else{
-                        console.log('error')
+                        console.log('get error')
                     }
                 }
             }) ()
@@ -137,7 +137,8 @@ export const BaseCriteria: React.FC = () => {
         dataBasicCriteria.push(Boolean(rowData[0].crit9))
         dataBasicCriteria.push(Boolean(rowData[0].crit10))
 
-        console.log(dataBasicCriteria)
+        console.log("dataBasicCriteria", dataBasicCriteria)
+
         const response = await fetch('https://study-ai.online/api/set_base_criteria',{
             method:'POST',
             credentials: "include",
@@ -161,12 +162,12 @@ export const BaseCriteria: React.FC = () => {
             })
         })
         if(response.ok){
-            console.log('success')
+            console.log('set success')
             const responseBody = await response.json();
             console.log(responseBody)
             setShouldRedirect(true)
         } else{
-            console.log('error')
+            console.log('set error')
         }
     }
 
@@ -184,10 +185,10 @@ export const BaseCriteria: React.FC = () => {
             })
         })
         if(response.ok){
-            console.log('success')
+            console.log('delete success')
             setShouldRedirect(true)
         } else{
-            console.log('error')
+            console.log('delete error')
         }
     }
 
@@ -229,12 +230,12 @@ export const BaseCriteria: React.FC = () => {
             })
         })
         if(response.ok){
-            console.log('success')
+            console.log('update success')
             const responseBody = await response.json();
             console.log(responseBody)
             setShouldRedirect(true)
         } else{
-            console.log('error')
+            console.log('update error')
         }
     }
 

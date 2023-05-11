@@ -14,6 +14,7 @@ import {PairComparisonCriterias} from "./components/PairComparisonCriterias";
 import {Auth} from "./components/Auth";
 import {Method} from "./components/Method"
 import {Register} from "./components/Register"
+import NotFound from "./components/NotFound"
 
 
 
@@ -36,6 +37,7 @@ function App() {
                         <Route path={'/auth'} element = {<Auth/>}/>
                         <Route path={'/register'} element = {<Register/>}/>
                         <Route path={'/method'} element = {<Method/>}/>
+                        <Route path='*' element={<NotFound />}/>
                     </Routes>
                 </div>
             </BrowserRouter>
