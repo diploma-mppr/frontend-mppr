@@ -31,6 +31,7 @@ export const Pareto: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [name, setName] = useState(false);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -130,6 +131,14 @@ export const Pareto: React.FC = () => {
 
     const handleSetPareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(true)
+            return
+        } else {
+            setName(false)
+        }
+
         for (let i=0; i<3; i++) {
             dataPareto.push(Number(rowData[i].var1))
             dataPareto.push(Number(rowData[i].var2))
@@ -182,6 +191,14 @@ export const Pareto: React.FC = () => {
 
     const handleUpdatePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(true)
+            return
+        } else {
+            setName(false)
+        }
+
         for (let i=0; i<3; i++) {
             dataPareto.push(Number(rowData[i].var1))
             dataPareto.push(Number(rowData[i].var2))
@@ -320,6 +337,14 @@ export const Pareto: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    !name && (
+                        <div>
+                            <h5 style={{color: "red"}}>Дайте название методу</h5>
+                        </div>
+                    )
+                }
 
                 <div className="alert alert-dark Che" style={{display: "flex"}}>
                     <div>
