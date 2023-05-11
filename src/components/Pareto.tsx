@@ -153,7 +153,9 @@ export const Pareto: React.FC = () => {
     const [shouldRedirect, setShouldRedirect] = useState(false);
 
     useEffect(() => {
-        if (shouldRedirect) navigate("/method");
+        if (shouldRedirect) {
+            navigate("/method");
+        }
     }, [shouldRedirect]);
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
