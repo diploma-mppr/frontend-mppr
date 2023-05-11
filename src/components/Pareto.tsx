@@ -153,8 +153,9 @@ export const Pareto: React.FC = () => {
     const [shouldRedirect, setShouldRedirect] = useState(false);
 
     useEffect(() => {
-        console.log("redirect")
+        console.log("redirect1")
         if (shouldRedirect) {
+            console.log("redirect2")
             navigate("/");
         }
     }, );
