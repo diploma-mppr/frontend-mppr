@@ -17,7 +17,7 @@ export const Method: React.FC = () => {
     useEffect(() => {
             (async ()=> {
 
-                const response = await fetch('http://study-ai.online/api/get_all',{
+                const response = await fetch('https://study-ai.online/api/get_all',{
                     method:'GET',
                     credentials: "include",
                     headers: {
