@@ -99,7 +99,7 @@ export const BaseCriteria: React.FC = () => {
                     }
                 }
             }) ()
-        },[searchParams]
+        },//[searchParams]
     )
 
     let dataBasicCriteria: any[] = [];
@@ -228,6 +228,8 @@ export const BaseCriteria: React.FC = () => {
     const onBtExport = useCallback(() => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
+
+    console.log(onBtExport)
 
     const [columnDefs] = useState<ColDef[]>([
         { field: 'crit1', headerName: "Критерий 1" },
