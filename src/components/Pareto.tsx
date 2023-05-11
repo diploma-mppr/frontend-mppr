@@ -149,7 +149,7 @@ export const Pareto: React.FC = () => {
     }
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
-        const navigate = useNavigate();
+        const Navigate = useNavigate();
         event.preventDefault();
         console.log("methodId: ", dataParetoId)
         const response = await fetch('https://study-ai.online/api/delete_pareto',{
@@ -166,7 +166,7 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            navigate("/method");
+            Navigate("/method");
         } else{
             console.log('error')
         }
