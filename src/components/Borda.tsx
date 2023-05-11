@@ -1,4 +1,5 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
+import { useNavigate } from "react-router-dom";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from "react-data-grid";
@@ -17,6 +18,16 @@ export interface BordaData {
 export type BordaDataI = BordaData[]|null
 
 export const Borda: React.FC = () => {
+    const navigate = useNavigate();
+
+    const [shouldRedirect, setShouldRedirect] = useState(false);
+
+    useEffect(() => {
+        if (shouldRedirect) {
+            navigate("/method");
+        }
+    }, );
+
     const [userData, setUserDataData] = useState<UserDataI>(null)
 
     useEffect(() => {
@@ -143,6 +154,7 @@ export const Borda: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -163,8 +175,7 @@ export const Borda: React.FC = () => {
         })
         if(response.ok){
             console.log('success')
-            const responseBody = await response.json();
-            console.log(responseBody)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -201,6 +212,7 @@ export const Borda: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
