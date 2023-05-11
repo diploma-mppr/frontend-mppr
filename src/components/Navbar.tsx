@@ -17,7 +17,7 @@ export const Navbar = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://212.233.93.17/api/get_user`,{
+                const response = await fetch(`http://study-ai.online/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -38,7 +38,7 @@ export const Navbar = () => {
 
     const Logout:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        const response = await fetch('http://212.233.93.17/api/logout',{
+        const response = await fetch('http://study-ai.online/api/logout',{
             method:'GET',
             credentials: "include",
             headers:{

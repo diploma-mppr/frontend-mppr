@@ -22,7 +22,7 @@ export const BaseCriteria: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://212.233.93.17/api/get_user`,{
+                const response = await fetch(`http://study-ai.online/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -64,7 +64,7 @@ export const BaseCriteria: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://212.233.93.17/api/get_base_criteria?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`http://study-ai.online/api/get_base_criteria?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -119,7 +119,7 @@ export const BaseCriteria: React.FC = () => {
         dataBasicCriteria.push(Boolean(rowData[0].crit10))
 
         console.log(dataBasicCriteria)
-        const response = await fetch('http://212.233.93.17/api/set_base_criteria',{
+        const response = await fetch('http://study-ai.online/api/set_base_criteria',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -153,7 +153,7 @@ export const BaseCriteria: React.FC = () => {
     const handleDeleteBasicCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataBaseCriteriaId)
-        const response = await fetch('http://212.233.93.17/api/delete_base_criteria',{
+        const response = await fetch('http://study-ai.online/api/delete_base_criteria',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -186,7 +186,7 @@ export const BaseCriteria: React.FC = () => {
         dataBasicCriteria.push(Boolean(rowData[0].crit10))
 
         console.log(dataBasicCriteria)
-        const response = await fetch('http://212.233.93.17/api/update_base_criteria',{
+        const response = await fetch('http://study-ai.online/api/update_base_criteria',{
             method:'POST',
             credentials: "include",
             headers:{

@@ -26,7 +26,7 @@ export const WeightedSum: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://212.233.93.17/api/get_user`,{
+                const response = await fetch(`http://study-ai.online/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -77,7 +77,7 @@ export const WeightedSum: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://212.233.93.17/api/get_weighted_sum?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`http://study-ai.online/api/get_weighted_sum?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -149,7 +149,7 @@ export const WeightedSum: React.FC = () => {
         console.log(dataWeightedSumVar4)
         console.log(dataWeightedSumVar5)
 
-        const response = await fetch('http://212.233.93.17/api/set_weighted_sum',{
+        const response = await fetch('http://study-ai.online/api/set_weighted_sum',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -231,7 +231,7 @@ export const WeightedSum: React.FC = () => {
     const handleDeleteWeightedSum:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataWeightedSumId)
-        const response = await fetch('http://212.233.93.17/api/delete_weighted_sum',{
+        const response = await fetch('http://study-ai.online/api/delete_weighted_sum',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -267,7 +267,7 @@ export const WeightedSum: React.FC = () => {
         console.log(dataWeightedSumVar4)
         console.log(dataWeightedSumVar5)
 
-        const response = await fetch('http://212.233.93.17/api/update_weighted_sum',{
+        const response = await fetch('http://study-ai.online/api/update_weighted_sum',{
             method:'POST',
             credentials: "include",
             headers:{
