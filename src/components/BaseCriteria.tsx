@@ -59,8 +59,9 @@ export const BaseCriteria: React.FC = () => {
 
     const [inputOne, setInputOne] = useState('');
 
-    const [rowData, setRowData] = useState<any[]>([
-        {
+    const [rowData, setRowData] = useState<any[]>(
+        [
+            {
             "crit1": false,
             "crit2": false,
             "crit3": true,
@@ -70,7 +71,8 @@ export const BaseCriteria: React.FC = () => {
             "crit7": false,
             "crit8": false,
             "crit9": true,
-            "crit10": true}
+            "crit10": true,
+        }
     ]);
 
     useEffect(() => {
@@ -232,7 +234,7 @@ export const BaseCriteria: React.FC = () => {
         if(response.ok){
             console.log('update success')
             const responseBody = await response.json();
-            console.log(responseBody)
+            console.log("update responseBody", responseBody)
             setShouldRedirect(true)
         } else{
             console.log('update error')

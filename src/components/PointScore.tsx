@@ -60,9 +60,20 @@ export const PointScore: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
 
     const [rowData, setRowData] = useState<any[]>(
-        [   {"crit1": 100, "crit2": 75,"crit3": 75,
-            "crit4": 75,"crit5": 75,"crit6": 50,"crit7": 100,
-            "crit8": 100,"crit9": 50,"crit10": 50} ]
+        [
+            {
+                "crit1": 100,
+                "crit2": 75,
+                "crit3": 75,
+                "crit4": 75,
+                "crit5": 75,
+                "crit6": 50,
+                "crit7": 100,
+                "crit8": 100,
+                "crit9": 50,
+                "crit10": 50,
+            }
+        ]
     );
 
     useEffect(() => {
@@ -83,7 +94,7 @@ export const PointScore: React.FC = () => {
                         }
                     })
                     if(response.ok){
-                        console.log('success')
+                        console.log('get success')
                         const responseBody = await response.json();
                         setDataPointScoreId(responseBody.id)
                         setPointScoreData(responseBody)
@@ -101,16 +112,15 @@ export const PointScore: React.FC = () => {
                                     "crit7": responseBody.var1[6],
                                     "crit8": responseBody.var1[7],
                                     "crit9": responseBody.var1[8],
-                                    "crit10": responseBody.var1[9]
+                                    "crit10": responseBody.var1[9],
                                 }
                             ]
                             console.log('test',test)
                             setRowData(test)
-
                         }
 
                     } else{
-                        console.log('error')
+                        console.log('get error')
                     }
                 }
             }) ()
@@ -134,7 +144,7 @@ export const PointScore: React.FC = () => {
         dataPointScore.push(Number(rowData[0].crit9))
         dataPointScore.push(Number(rowData[0].crit10))
 
-        console.log(dataPointScore)
+        console.log("dataPointScore: ", dataPointScore)
 
         const response = await fetch('https://study-ai.online/api/set_point_score',{
             method:'POST',
@@ -159,12 +169,12 @@ export const PointScore: React.FC = () => {
             })
         })
         if(response.ok){
-            console.log('success')
+            console.log('set success')
             const responseBody = await response.json();
             console.log(responseBody)
             setShouldRedirect(true)
         } else{
-            console.log('error')
+            console.log('set error')
         }
     }
 
