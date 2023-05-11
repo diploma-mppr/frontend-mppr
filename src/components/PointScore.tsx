@@ -22,7 +22,7 @@ export const PointScore: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://study-ai.online/api/get_user`,{
+                const response = await fetch(`https://study-ai.online/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -64,7 +64,7 @@ export const PointScore: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://study-ai.online/api/get_point_score?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`https://study-ai.online/api/get_point_score?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -125,7 +125,7 @@ export const PointScore: React.FC = () => {
 
         console.log(dataPointScore)
 
-        const response = await fetch('http://study-ai.online/api/set_point_score',{
+        const response = await fetch('https://study-ai.online/api/set_point_score',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -159,7 +159,7 @@ export const PointScore: React.FC = () => {
     const handleDeletePointScore:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataPointScoreId)
-        const response = await fetch('http://study-ai.online/api/delete_point_score',{
+        const response = await fetch('https://study-ai.online/api/delete_point_score',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -194,7 +194,7 @@ export const PointScore: React.FC = () => {
 
         console.log(dataPointScore)
 
-        const response = await fetch('http://study-ai.online/api/update_point_score',{
+        const response = await fetch('https://study-ai.online/api/update_point_score',{
             method:'POST',
             credentials: "include",
             headers:{

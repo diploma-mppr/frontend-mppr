@@ -25,7 +25,7 @@ export const Nanson: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://study-ai.online/api/get_user`,{
+                const response = await fetch(`https://study-ai.online/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -70,7 +70,7 @@ export const Nanson: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://study-ai.online/api/get_nanson?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`https://study-ai.online/api/get_nanson?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -121,7 +121,7 @@ export const Nanson: React.FC = () => {
 
         console.log(dataNanson)
 
-        const response = await fetch('http://study-ai.online/api/set_nanson',{
+        const response = await fetch('https://study-ai.online/api/set_nanson',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -151,7 +151,7 @@ export const Nanson: React.FC = () => {
     const handleDeleteNanson:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataNansonId)
-        const response = await fetch('http://study-ai.online/api/delete_nanson',{
+        const response = await fetch('https://study-ai.online/api/delete_nanson',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -179,7 +179,7 @@ export const Nanson: React.FC = () => {
 
         console.log(dataNanson)
 
-        const response = await fetch('http://study-ai.online/api/update_nanson',{
+        const response = await fetch('https://study-ai.online/api/update_nanson',{
             method:'POST',
             credentials: "include",
             headers:{

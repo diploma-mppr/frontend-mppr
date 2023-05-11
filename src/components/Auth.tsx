@@ -6,7 +6,7 @@ export const Auth: React.FC = () => {
 
     const Login:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        const response = await fetch('http://study-ai.online/api/login',{
+        const response = await fetch('https://study-ai.online/api/login',{
             method:'POST',
             credentials: 'include',
             headers:{

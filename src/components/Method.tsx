@@ -46,7 +46,7 @@ export const Method: React.FC = () => {
         <div>
             {
                 data.map((item, i)=>{
-                    const url = "http://study-ai.online/" + item.Name + "?id=" + item.Id;
+                    const url = "https://study-ai.online/" + item.Name + "?id=" + item.Id;
                 // , justifyContent: "space-between"
                     return <div key={i} style={{width: "90%",display: "flex", margin: "10px", marginRight: "50px"}}>
                         <p style={{width: "20px", marginLeft: "20px", marginRight: "20px"}}>{i+1}</p>

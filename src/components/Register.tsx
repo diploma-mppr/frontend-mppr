@@ -27,7 +27,7 @@ export const Register: React.FC = () => {
 
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        const response = await fetch('http://study-ai.online/api/register',{
+        const response = await fetch('https://study-ai.online/api/register',{
             method:'POST',
             credentials: 'include',
             headers:{
