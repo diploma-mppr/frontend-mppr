@@ -24,6 +24,7 @@ jobs:
         run: |
           ls -lah
           mkdir ./public/build
+          cp -r ./build ./public/build
 
       - name: Upload build result
         uses: actions/upload-artifact@v1
