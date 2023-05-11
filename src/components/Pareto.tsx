@@ -164,6 +164,7 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            window.open("/")
         } else{
             console.log('prosas')
         }
