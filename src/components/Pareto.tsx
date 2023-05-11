@@ -164,10 +164,10 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            window.open("http://study-ai.online/method")
         } else{
             console.log('prosas')
         }
+        window.open("/method")
     }
 
     const handleUpdatePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
