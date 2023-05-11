@@ -30,7 +30,7 @@ export const Method: React.FC = () => {
                     setData(responseBody)
                     console.log(responseBody)
                 } else{
-                    console.log('prosas')
+                    console.log('error')
                 }
             }) ()
 

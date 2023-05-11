@@ -21,7 +21,7 @@ export const Register: React.FC = () => {
     //         const responseBody = await response.json();
     //         console.log(responseBody)
     //     } else{
-    //         console.log('prosas')
+    //         console.log('error')
     //     }
     // }
 
@@ -44,7 +44,7 @@ export const Register: React.FC = () => {
             console.log(responseBody)
             window.open("/")
         } else{
-            console.log('prosas')
+            console.log('error')
         }
 
     }
@@ -62,7 +62,7 @@ export const Register: React.FC = () => {
     //         const responseBody = await response.json();
     //         console.log(responseBody)
     //     } else{
-    //         console.log('prosas')
+    //         console.log('error')
     //     }
     // }
 

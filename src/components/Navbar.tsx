@@ -29,7 +29,7 @@ export const Navbar = () => {
                     const responseBody = await response.json();
                     setUserDataData(responseBody)
                 } else{
-                    console.log('prosas')
+                    console.log('error')
                 }
 
             }) ()
@@ -51,7 +51,7 @@ export const Navbar = () => {
             console.log(responseBody)
             window.location.href = "/";
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 

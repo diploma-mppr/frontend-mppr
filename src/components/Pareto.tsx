@@ -47,7 +47,7 @@ export const Pareto: React.FC = () => {
                     const responseBody = await response.json();
                     setUserDataData(responseBody)
                 } else{
-                    console.log('prosas')
+                    console.log('error')
                 }
 
             }) ()
@@ -108,7 +108,7 @@ export const Pareto: React.FC = () => {
                             })
                         }
                     } else{
-                        console.log('prosas')
+                        console.log('error')
                     }
                 }
             }) ()
@@ -143,7 +143,7 @@ export const Pareto: React.FC = () => {
             const responseBody = await response.json();
             console.log(responseBody)
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 
@@ -164,9 +164,9 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            window.open("/")
+            window.location.href = "/method"
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 
@@ -198,7 +198,7 @@ export const Pareto: React.FC = () => {
             const responseBody = await response.json();
             console.log(responseBody)
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 

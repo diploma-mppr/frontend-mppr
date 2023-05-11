@@ -37,7 +37,7 @@ export const Borda: React.FC = () => {
                     const responseBody = await response.json();
                     setUserDataData(responseBody)
                 } else{
-                    console.log('prosas')
+                    console.log('error')
                 }
 
             }) ()
@@ -103,7 +103,7 @@ export const Borda: React.FC = () => {
                             setRowData(test)
                         }
                     } else{
-                        console.log('prosas')
+                        console.log('error')
                     }
                 }
             }) ()
@@ -144,7 +144,7 @@ export const Borda: React.FC = () => {
             const responseBody = await response.json();
             console.log(responseBody)
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 
@@ -166,7 +166,7 @@ export const Borda: React.FC = () => {
             const responseBody = await response.json();
             console.log(responseBody)
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 
@@ -202,7 +202,7 @@ export const Borda: React.FC = () => {
             const responseBody = await response.json();
             console.log(responseBody)
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 

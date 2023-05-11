@@ -23,7 +23,7 @@ export const Auth: React.FC = () => {
             console.log(responseBody)
             window.open("/")
         } else{
-            console.log('prosas')
+            console.log('error')
         }
     }
 
@@ -45,7 +45,7 @@ export const Auth: React.FC = () => {
     //         const responseBody = await response.json();
     //         console.log(responseBody)
     //     } else{
-    //         console.log('prosas')
+    //         console.log('error')
     //     }
     //
     // }
@@ -63,7 +63,7 @@ export const Auth: React.FC = () => {
     //         const responseBody = await response.json();
     //         console.log(responseBody)
     //     } else{
-    //         console.log('prosas')
+    //         console.log('error')
     //     }
     // }
 
