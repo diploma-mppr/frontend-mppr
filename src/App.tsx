@@ -4,7 +4,6 @@ import {Route, Routes, BrowserRouter} from "react-router-dom";
 
 import {Theory} from "./pages/Theory";
 import {Home} from "./pages/Home";
-import {About} from "./pages/About";
 import {Pareto} from "./components/Pareto";
 import {BaseCriteria} from "./components/BaseCriteria";
 import {PointScore} from "./components/PointScore";
@@ -27,7 +26,6 @@ function App() {
                     <Routes>
                         <Route path={'/'} element = {<Home/>}/>
                         <Route path={'/theory'} element = {<Theory/>}/>
-                        {/*<Route path={'/about'} element = {<About/>}/>*/}
                         <Route path={'/pareto'} element = {<Pareto/>}/>
                         <Route path={'/baseCriteria'} element = {<BaseCriteria/>}/>
                         <Route path={'/pointScore'} element = {<PointScore/>}/>

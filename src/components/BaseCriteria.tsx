@@ -1,9 +1,7 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
-import {Hub} from "./Hub";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from 'react-data-grid';
-import {ParetoData, ParetoDataI} from "./Pareto";
 import {useSearchParams} from "react-router-dom";
 import {UserDataI} from "./Navbar";
 
@@ -223,8 +221,6 @@ export const BaseCriteria: React.FC = () => {
     const [range, setRange] = useState('1')
 
     const gridRef = useRef<AgGridReact>(null);
-    // const containerStyle = useMemo(() => ({ width: '128%', height: '40%' }), []);
-    // const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
 
     const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
     const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
@@ -233,7 +229,7 @@ export const BaseCriteria: React.FC = () => {
         gridRef.current!.api.exportDataAsCsv();
     }, []);
 
-    const [columnDefs, setColumnDefs] = useState<ColDef[]>([
+    const [columnDefs] = useState<ColDef[]>([
         { field: 'crit1', headerName: "Критерий 1" },
         { field: 'crit2', headerName: "Критерий 2" },
         { field: 'crit3', headerName: "Критерий 3" },
@@ -254,7 +250,7 @@ export const BaseCriteria: React.FC = () => {
     }, []);
 
 
-    let criteriasNum: number = 10;
+    // let criteriasNum: number = 10;
 
     function criteriasBase() {
         let criteriasBase: Array<boolean> = [false, false, true, false, true ,false, false , false, true, true];
@@ -431,19 +427,19 @@ function fillPointsArray(criteriasBase: Array<boolean>) {
     return criteriasPoints;
 }
 
-function announceBase(criteriasBase: Array<Boolean>) {
-    let AnnounceMessage: String = "";
-
-    for (let i = 0; i < criteriasBase.length; i++) {
-        if (criteriasBase[i]) {
-            AnnounceMessage += "Критерий " + (i + 1) + " базовый, весит 1 балл; \n";
-        } else {
-            AnnounceMessage +="Критерий " + (i + 1) + " небазовый, весит 2 балла; \n";
-        }
-    }
-
-    return AnnounceMessage;
-}
+// function announceBase(criteriasBase: Array<Boolean>) {
+//     let AnnounceMessage: String = "";
+//
+//     for (let i = 0; i < criteriasBase.length; i++) {
+//         if (criteriasBase[i]) {
+//             AnnounceMessage += "Критерий " + (i + 1) + " базовый, весит 1 балл; \n";
+//         } else {
+//             AnnounceMessage +="Критерий " + (i + 1) + " небазовый, весит 2 балла; \n";
+//         }
+//     }
+//
+//     return AnnounceMessage;
+// }
 
 
 function countSumPoints(points: Array<number>) {
