@@ -1,7 +1,10 @@
 import React, {MouseEventHandler, useState} from "react";
+
 export const Register: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
     const [inputTwo, setInputTwo] = useState('');
+
+    const [che, setChe] = useState(false);
 
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
@@ -23,12 +26,21 @@ export const Register: React.FC = () => {
             window.location.href = "/";
         } else{
             console.log('error')
+            setChe(true)
         }
 
     }
 
     return(
         <div className="Base">
+            {
+                che && (
+                    <div>
+                        <h5 style={{color: "red"}}>Что-то пошло не так!?</h5>
+                        <h5 style={{color: "red"}}>Попробуйте снова</h5>
+                    </div>
+                )
+            }
             <div className="mb-3">
                 <input id="username" value={inputOne} type="text" name="message" placeholder="username" onChange={(event) => setInputOne(event.target.value)}/>
             </div>

@@ -1,18 +1,10 @@
 import React, {MouseEventHandler, useState} from "react";
-// import { useNavigate } from "react-router-dom";
+
 export const Auth: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
     const [inputTwo, setInputTwo] = useState('');
 
-    // const navigate = useNavigate();
-    //
-    // const [shouldRedirect, setShouldRedirect] = useState(false);
-    //
-    // useEffect(() => {
-    //     if (shouldRedirect) {
-    //         navigate("/");
-    //     }
-    // }, );
+    const [che, setChe] = useState(false);
 
     const Login:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
@@ -34,11 +26,20 @@ export const Auth: React.FC = () => {
             window.location.href = "/";
         } else{
             console.log('error')
+            setChe(true)
         }
     }
 
     return(
         <div className="Base">
+            {
+                che && (
+                    <div>
+                        <h5 style={{color: "red"}}>Что-то пошло не так!?</h5>
+                        <h5 style={{color: "red"}}>Попробуйте снова</h5>
+                    </div>
+                )
+            }
             <div className="mb-3">
                 <input id="username" value={inputOne} type="text" name="message" placeholder="username" onChange={(event) => setInputOne(event.target.value)}/>
             </div>
