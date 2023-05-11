@@ -1,4 +1,5 @@
 import React, {useState, useCallback, useMemo, useRef, MouseEventHandler, useEffect} from "react";
+import { useNavigate } from "react-router-dom";
 import { useSearchParams } from "react-router-dom";
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -148,6 +149,7 @@ export const Pareto: React.FC = () => {
     }
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
+        const navigate = useNavigate();
         event.preventDefault();
         console.log("methodId: ", dataParetoId)
         const response = await fetch('https://study-ai.online/api/delete_pareto',{
@@ -164,7 +166,7 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            window.location.href = "/method"
+            navigate("/method");
         } else{
             console.log('error')
         }
