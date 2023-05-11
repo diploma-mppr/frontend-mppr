@@ -166,7 +166,10 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            Navigate("/method");
+            useEffect(() => {
+                Navigate("/method");
+            },);
+
         } else{
             console.log('error')
         }
