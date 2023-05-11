@@ -82,7 +82,7 @@ export const Navbar = () => {
                                         <a className="nav-link " href={"/auth"}>Войти</a>
                                     </li>
                                     <li className="nav-item">
-                                        <a className="nav-link " href={"/register"}>Зарегестрироваться</a>
+                                        <a className="nav-link " href={"/register"}>Зарегистрироваться</a>
                                     </li>
                                 </div>
 

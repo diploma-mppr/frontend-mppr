@@ -80,7 +80,7 @@ export const Register: React.FC = () => {
             {/*</div>*/}
 
             <div className="mb-3">
-                <button onClick={Register} type="button" className="btn btn-primary" id="button-addon2">Зарегестрироваться</button>
+                <button onClick={Register} type="button" className="btn btn-primary" id="button-addon2">Зарегистрироваться</button>
             </div>
 
             {/*<div className="mb-3">*/}
