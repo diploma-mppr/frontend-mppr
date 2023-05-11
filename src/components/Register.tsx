@@ -1,18 +1,7 @@
-import React, {MouseEventHandler, useEffect, useState} from "react";
-import { useNavigate } from "react-router-dom";
+import React, {MouseEventHandler, useState} from "react";
 export const Register: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
     const [inputTwo, setInputTwo] = useState('');
-
-    const navigate = useNavigate();
-
-    const [shouldRedirect, setShouldRedirect] = useState(false);
-
-    useEffect(() => {
-        if (shouldRedirect) {
-            navigate("/");
-        }
-    }, );
 
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
@@ -31,7 +20,7 @@ export const Register: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            setShouldRedirect(true)
+            window.location.href = "/";
         } else{
             console.log('error')
         }

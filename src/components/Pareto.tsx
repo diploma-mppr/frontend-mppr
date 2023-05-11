@@ -28,6 +28,16 @@ export interface ParetoData {
 export type ParetoDataI = ParetoData[]|null
 
 export const Pareto: React.FC = () => {
+    const navigate = useNavigate();
+
+    const [shouldRedirect, setShouldRedirect] = useState(false);
+
+    useEffect(() => {
+        if (shouldRedirect) {
+            navigate("/method");
+        }
+    }, );
+
     const [userData, setUserDataData] = useState<UserDataI>(null)
 
     useEffect(() => {
@@ -143,20 +153,11 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
     }
-
-    const navigate = useNavigate();
-
-    const [shouldRedirect, setShouldRedirect] = useState(false);
-
-    useEffect(() => {
-        if (shouldRedirect) {
-            navigate("/method");
-        }
-    }, );
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
@@ -206,6 +207,7 @@ export const Pareto: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
