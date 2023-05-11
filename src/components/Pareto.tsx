@@ -156,7 +156,7 @@ export const Pareto: React.FC = () => {
         if (shouldRedirect) {
             navigate("/method");
         }
-    }, [shouldRedirect]);
+    }, );
 
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
