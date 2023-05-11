@@ -175,10 +175,10 @@ export const Pareto: React.FC = () => {
         })
         if(response.ok){
             console.log('success')
-            const responseBody = await response.json();
-            console.log(responseBody)
             setShouldRedirect(true)
             console.log("shouldRedirect", shouldRedirect)
+            const responseBody = await response.json();
+            console.log(responseBody)
         } else{
             console.log('error')
         }
