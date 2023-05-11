@@ -1,5 +1,5 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from 'react-data-grid';
@@ -15,15 +15,15 @@ export interface BaseCriteriaData {
 export type BaseCriteriaDataI = BaseCriteriaData[]|null
 
 export const BaseCriteria: React.FC = () => {
-    const navigate = useNavigate();
-
-    const [shouldRedirect, setShouldRedirect] = useState(false);
-
-    useEffect(() => {
-        if (shouldRedirect) {
-            navigate("/method");
-        }
-    }, );
+    // const navigate = useNavigate();
+    //
+    // const [shouldRedirect, setShouldRedirect] = useState(false);
+    //
+    // useEffect(() => {
+    //     if (shouldRedirect) {
+    //         navigate("/method");
+    //     }
+    // }, );
 
     const [userData, setUserDataData] = useState<UserDataI>(null)
 
@@ -148,7 +148,7 @@ export const BaseCriteria: React.FC = () => {
                     dataBasicCriteria[6],
                     dataBasicCriteria[7],
                     dataBasicCriteria[8],
-                    dataBasicCriteria[9]
+                    dataBasicCriteria[9],
                 ],
             })
         })
@@ -156,7 +156,7 @@ export const BaseCriteria: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            setShouldRedirect(true)
+            // setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -177,7 +177,7 @@ export const BaseCriteria: React.FC = () => {
         })
         if(response.ok){
             console.log('success')
-            setShouldRedirect(true)
+            // setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -224,7 +224,7 @@ export const BaseCriteria: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            setShouldRedirect(true)
+            // setShouldRedirect(true)
         } else{
             console.log('error')
         }
