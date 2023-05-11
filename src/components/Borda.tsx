@@ -338,7 +338,7 @@ export const Borda: React.FC = () => {
                         userData && (
                             <div className="input-group mb-3 p-1" style={{marginLeft: "auto", width: "900px"}}>
                                 {
-                                    dataBorda && (
+                                    bordaData && (
                                         <button onClick={handleDeleteBorda} type="button" className="btn btn-primary" id="button-addon2">Удалить</button>
                                     )
                                 }
@@ -347,7 +347,7 @@ export const Borda: React.FC = () => {
                                 <input  value={inputOne} type="text" className="form-control" onChange={(event) => setInputOne(event.target.value)}/>
 
                                 {
-                                    dataBorda && (
+                                    bordaData && (
                                         <button onClick={handleUpdateBorda} type="button" className="btn btn-primary" id="button-addon2">Обновить</button>
                                     )
                                 }
