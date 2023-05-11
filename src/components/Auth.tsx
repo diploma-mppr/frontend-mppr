@@ -21,7 +21,7 @@ export const Auth: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            window.location.href = "/";
+            window.open("/")
         } else{
             console.log('prosas')
         }

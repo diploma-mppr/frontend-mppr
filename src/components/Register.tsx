@@ -1,6 +1,4 @@
 import React, {MouseEventHandler, useState} from "react";
-import { useNavigate } from "react-router-dom";
-
 export const Register: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
     const [inputTwo, setInputTwo] = useState('');
@@ -26,7 +24,7 @@ export const Register: React.FC = () => {
     //         console.log('prosas')
     //     }
     // }
-    const navigate = useNavigate();
+
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         const response = await fetch('http://study-ai.online/api/register',{
@@ -44,9 +42,7 @@ export const Register: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-
-            navigate("/");
-            // window.location.href = "/";
+            window.open("/")
         } else{
             console.log('prosas')
         }
