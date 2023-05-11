@@ -164,7 +164,7 @@ export const PointScore: React.FC = () => {
                     dataPointScore[6],
                     dataPointScore[7],
                     dataPointScore[8],
-                    dataPointScore[9]
+                    dataPointScore[9],
                 ],
             })
         })
