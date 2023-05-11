@@ -98,13 +98,13 @@ export const Pareto: React.FC = () => {
                         if (responseBody.var1 && responseBody.var2 && responseBody.var3 && responseBody.name) {
                             setInputOne(responseBody.name)
                             Object.keys(responseBody).map((item: any, i: number) => {
-                                console.log(item, i);
                                 const test = [
                                     {"crits":"Критерий 1", "var1": responseBody.var1[0],"var2": responseBody.var1[1], "var3": responseBody.var1[2]},
                                     {"crits":"Критерий 2", "var1": responseBody.var2[0],"var2": responseBody.var2[1], "var3": responseBody.var2[2]},
                                     {"crits":"Критерий 3", "var1": responseBody.var3[0],"var2": responseBody.var3[1], "var3": responseBody.var3[2]}]
                                 console.log('test222',test);
                                 setRowData(test);
+                                return console.log(item, i);
                             })
                         }
                     } else{
