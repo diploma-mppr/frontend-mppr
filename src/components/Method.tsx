@@ -17,7 +17,7 @@ export const Method: React.FC = () => {
     useEffect(() => {
             (async ()=> {
 
-                const response = await fetch('http://127.0.0.1:8000/api/get_all',{
+                const response = await fetch('http://212.233.93.17/api/get_all',{
                     method:'GET',
                     credentials: "include",
                     headers: {

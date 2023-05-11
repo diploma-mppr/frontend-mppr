@@ -35,7 +35,7 @@ export const Pareto: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://127.0.0.1:8000/api/get_user`,{
+                const response = await fetch(`http://212.233.93.17/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -81,7 +81,7 @@ export const Pareto: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://127.0.0.1:8000/api/get_pareto?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`http://212.233.93.17/api/get_pareto?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -125,7 +125,7 @@ export const Pareto: React.FC = () => {
             dataPareto.push(Number(rowData[i].var3))
         }
         console.log(dataPareto)
-        const response = await fetch('http://127.0.0.1:8000/api/set_pareto',{
+        const response = await fetch('http://212.233.93.17/api/set_pareto',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -150,7 +150,7 @@ export const Pareto: React.FC = () => {
     const handleDeletePareto:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataParetoId)
-        const response = await fetch('http://127.0.0.1:8000/api/delete_pareto',{
+        const response = await fetch('http://212.233.93.17/api/delete_pareto',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -178,7 +178,7 @@ export const Pareto: React.FC = () => {
         }
         console.log(dataPareto)
         console.log("methodId: ", dataParetoId)
-        const response = await fetch('http://127.0.0.1:8000/api/update_pareto',{
+        const response = await fetch('http://212.233.93.17/api/update_pareto',{
             method:'POST',
             credentials: "include",
             headers:{

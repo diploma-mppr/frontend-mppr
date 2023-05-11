@@ -29,7 +29,7 @@ export const Register: React.FC = () => {
     const navigate = useNavigate();
     const Register:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
-        const response = await fetch('http://127.0.0.1:8000/api/register',{
+        const response = await fetch('http://212.233.93.17/api/register',{
             method:'POST',
             credentials: 'include',
             headers:{

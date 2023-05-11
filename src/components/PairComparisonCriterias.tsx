@@ -31,7 +31,7 @@ export const PairComparisonCriterias: React.FC = () => {
             }
             (async ()=> {
 
-                const response = await fetch(`http://127.0.0.1:8000/api/get_user`,{
+                const response = await fetch(`http://212.233.93.17/api/get_user`,{
                     method:'GET',
                     credentials: "include",
                     headers: {
@@ -81,7 +81,7 @@ export const PairComparisonCriterias: React.FC = () => {
                     console.log("doesn't have params")
                 } else {
                     console.log(searchParams.get("id"))
-                    const response = await fetch(`http://127.0.0.1:8000/api/get_pair_comparison_criteria?id=${searchParams.get("id")}`,{
+                    const response = await fetch(`http://212.233.93.17/api/get_pair_comparison_criteria?id=${searchParams.get("id")}`,{
                         method:'GET',
                         credentials: "include",
                         headers: {
@@ -262,7 +262,7 @@ export const PairComparisonCriterias: React.FC = () => {
 
         console.log(dataPairComparisonCriteria)
 
-        const response = await fetch('http://127.0.0.1:8000/api/set_pair_comparison_criteria',{
+        const response = await fetch('http://212.233.93.17/api/set_pair_comparison_criteria',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -404,7 +404,7 @@ export const PairComparisonCriterias: React.FC = () => {
     const handleDeletePairComparisonCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
         console.log("methodId: ", dataPairComparisonCriteriaId)
-        const response = await fetch('http://127.0.0.1:8000/api/delete_pair_comparison_criteria',{
+        const response = await fetch('http://212.233.93.17/api/delete_pair_comparison_criteria',{
             method:'POST',
             credentials: "include",
             headers:{
@@ -441,7 +441,7 @@ export const PairComparisonCriterias: React.FC = () => {
 
         console.log(dataPairComparisonCriteria)
 
-        const response = await fetch('http://127.0.0.1:8000/api/update_pair_comparison_criteria',{
+        const response = await fetch('http://212.233.93.17/api/update_pair_comparison_criteria',{
             method:'POST',
             credentials: "include",
             headers:{
