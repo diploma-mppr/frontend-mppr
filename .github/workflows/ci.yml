@@ -37,7 +37,7 @@ jobs:
     needs: build
     steps:
       - name: Download build
-        uses: actions/checkout@v0.1.4
+        uses: actions/download-artifact@v1
         with:
           name: build
       - name: Transfer build files to server
@@ -46,7 +46,6 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.PRIVATE_KEY }}
-          port: 22
           source: "build/*"
           target: "/home/ubuntu/infrastructure"
           strip_components: 1
