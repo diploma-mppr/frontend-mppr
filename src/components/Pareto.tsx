@@ -153,10 +153,8 @@ export const Pareto: React.FC = () => {
     const [shouldRedirect, setShouldRedirect] = useState(false);
 
     useEffect(() => {
-        console.log("redirect1")
         if (shouldRedirect) {
-            console.log("redirect2")
-            navigate("/");
+            navigate("/method");
         }
     }, );
 
@@ -176,9 +174,6 @@ export const Pareto: React.FC = () => {
         if(response.ok){
             console.log('success')
             setShouldRedirect(true)
-            console.log("shouldRedirect", shouldRedirect)
-            const responseBody = await response.json();
-            console.log(responseBody)
         } else{
             console.log('error')
         }
