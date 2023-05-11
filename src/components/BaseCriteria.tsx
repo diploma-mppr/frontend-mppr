@@ -1,5 +1,5 @@
 import React, {MouseEventHandler, useCallback, useEffect, useMemo, useRef, useState} from "react";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {AgGridReact} from "ag-grid-react";
 import {ColDef} from "ag-grid-community";
 import DataGrid from 'react-data-grid';
@@ -15,15 +15,15 @@ export interface BaseCriteriaData {
 export type BaseCriteriaDataI = BaseCriteriaData[]|null
 
 export const BaseCriteria: React.FC = () => {
-    // const navigate = useNavigate();
-    //
-    // const [shouldRedirect, setShouldRedirect] = useState(false);
-    //
-    // useEffect(() => {
-    //     if (shouldRedirect) {
-    //         navigate("/method");
-    //     }
-    // }, );
+    const navigate = useNavigate();
+
+    const [shouldRedirect, setShouldRedirect] = useState(false);
+
+    useEffect(() => {
+        if (shouldRedirect) {
+            navigate("/method");
+        }
+    }, );
 
     const [userData, setUserDataData] = useState<UserDataI>(null)
 
@@ -60,9 +60,17 @@ export const BaseCriteria: React.FC = () => {
     const [inputOne, setInputOne] = useState('');
 
     const [rowData, setRowData] = useState<any[]>([
-        {"crit1": false, "crit2": false,"crit3": true,
-            "crit4": false,"crit5": true,"crit6": false,"crit7": false,
-            "crit8": false,"crit9": true,"crit10": true}
+        {
+            "crit1": false,
+            "crit2": false,
+            "crit3": true,
+            "crit4": false,
+            "crit5": true,
+            "crit6": false,
+            "crit7": false,
+            "crit8": false,
+            "crit9": true,
+            "crit10": true}
     ]);
 
     useEffect(() => {
@@ -100,7 +108,7 @@ export const BaseCriteria: React.FC = () => {
                                 "crit7": responseBody.var1[6],
                                 "crit8": responseBody.var1[7],
                                 "crit9": responseBody.var1[8],
-                                "crit10": responseBody.var1[9]
+                                "crit10": responseBody.var1[9],
                             }]
                             console.log('test: ',test)
                             setRowData(test)
@@ -156,7 +164,7 @@ export const BaseCriteria: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            // setShouldRedirect(true)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -177,7 +185,7 @@ export const BaseCriteria: React.FC = () => {
         })
         if(response.ok){
             console.log('success')
-            // setShouldRedirect(true)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
@@ -224,7 +232,7 @@ export const BaseCriteria: React.FC = () => {
             console.log('success')
             const responseBody = await response.json();
             console.log(responseBody)
-            // setShouldRedirect(true)
+            setShouldRedirect(true)
         } else{
             console.log('error')
         }
