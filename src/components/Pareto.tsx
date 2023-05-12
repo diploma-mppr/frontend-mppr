@@ -31,7 +31,7 @@ export const Pareto: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
-    const [name, setName] = useState(false);
+    const [name, setName] = useState(true);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -133,10 +133,10 @@ export const Pareto: React.FC = () => {
         event.preventDefault();
 
         if (inputOne==="") {
-            setName(true)
+            setName(false)
             return
         } else {
-            setName(false)
+            setName(true)
         }
 
         for (let i=0; i<3; i++) {
@@ -193,10 +193,10 @@ export const Pareto: React.FC = () => {
         event.preventDefault();
 
         if (inputOne==="") {
-            setName(true)
+            setName(false)
             return
         } else {
-            setName(false)
+            setName(true)
         }
 
         for (let i=0; i<3; i++) {
