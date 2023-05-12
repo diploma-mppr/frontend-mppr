@@ -6,15 +6,8 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
+import {ColDef} from 'ag-grid-community';
 
-import {
-    ColDef,
-    // ColGroupDef,
-    // Grid,
-    // GridOptions,
-    // GridReadyEvent,
-    // ValueGetterParams
-} from 'ag-grid-community';
 import {UserDataI} from "./Navbar";
 
 export interface ParetoData {

@@ -596,8 +596,8 @@ export const PairComparisonCriterias: React.FC = () => {
     const [range, setRange] = useState('1');
 
     const gridRef = useRef<AgGridReact>(null);
-    const containerStyle = useMemo(() => ({ width: '128%', height: '98%' }), []);
-    const gridStyle = useMemo(() => ({ height: '100%', width: '100%' }), []);
+    const containerStyle = useMemo(() => ({ width: '98%', height: '100%' }), []);
+    const gridStyle = useMemo(() => ({ height: '98%', width: '100%' }), []);
 
     const onBtExport = useCallback(() => {
         gridRef.current!.api.exportDataAsCsv();
