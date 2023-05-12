@@ -35,7 +35,7 @@ export const Auth: React.FC = () => {
             {
                 che && (
                     <div>
-                        <h5 style={{color: "red"}}>Что-то пошло не так!?</h5>
+                        <h5 style={{color: "red"}}>Ошибка авторизации</h5>
                         <h5 style={{color: "red"}}>Попробуйте снова</h5>
                     </div>
                 )
