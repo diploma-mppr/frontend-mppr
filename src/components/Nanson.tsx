@@ -21,6 +21,7 @@ export const Nanson: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [name, setName] = useState(true);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -126,6 +127,13 @@ export const Nanson: React.FC = () => {
     const handlerSetNanson:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
 
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
+
         for (let i = 0; i < 6; i++) {
             dataNanson.push(Number(rowData[i].count))
         }
@@ -183,6 +191,13 @@ export const Nanson: React.FC = () => {
 
     const handleUpdateNanson:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
 
         for (let i = 0; i < 6; i++) {
             dataNanson.push(Number(rowData[i].count))
@@ -375,6 +390,14 @@ export const Nanson: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    !name && (
+                        <div>
+                            <h5 style={{color: "red"}}>Дайте название методу</h5>
+                        </div>
+                    )
+                }
 
                 <div className="alert alert-dark Che row">
                     <div className="col">

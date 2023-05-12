@@ -22,6 +22,7 @@ export const WeightedSum: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [name, setName] = useState(true);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -146,6 +147,13 @@ export const WeightedSum: React.FC = () => {
     const handlerSetWeightedSum:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
 
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
+
         for (let i = 0; i < 10; i++) {
             dataWeightedSumVar1.push(String(rowData[i].crits))
             dataWeightedSumVar2.push(Number(rowData[i].weights))
@@ -263,6 +271,13 @@ export const WeightedSum: React.FC = () => {
 
     const handleUpdateWeightedSum:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
 
         for (let i = 0; i < 10; i++) {
             dataWeightedSumVar1.push(String(rowData[i].crits))
@@ -496,6 +511,14 @@ export const WeightedSum: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    !name && (
+                        <div>
+                            <h5 style={{color: "red"}}>Дайте название методу</h5>
+                        </div>
+                    )
+                }
 
                 <div className="alert alert-dark Che row">
                     <div className="col">

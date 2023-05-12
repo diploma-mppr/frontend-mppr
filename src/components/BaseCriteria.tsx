@@ -18,6 +18,7 @@ export const BaseCriteria: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [name, setName] = useState(true);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -128,6 +129,13 @@ export const BaseCriteria: React.FC = () => {
     const handleSetBasicCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
 
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
+
         dataBasicCriteria.push(Boolean(rowData[0].crit1))
         dataBasicCriteria.push(Boolean(rowData[0].crit2))
         dataBasicCriteria.push(Boolean(rowData[0].crit3))
@@ -196,6 +204,14 @@ export const BaseCriteria: React.FC = () => {
 
     const handleUpdateBasicCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
+
         dataBasicCriteria.push(Boolean(rowData[0].crit1))
         dataBasicCriteria.push(Boolean(rowData[0].crit2))
         dataBasicCriteria.push(Boolean(rowData[0].crit3))
@@ -365,6 +381,14 @@ export const BaseCriteria: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    !name && (
+                        <div>
+                            <h5 style={{color: "red"}}>Дайте название методу</h5>
+                        </div>
+                    )
+                }
 
                 <div className="alert alert-dark Che row">
                     <div className="col">

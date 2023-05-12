@@ -27,6 +27,7 @@ export const PairComparisonCriterias: React.FC = () => {
     const navigate = useNavigate();
 
     const [shouldRedirect, setShouldRedirect] = useState(false);
+    const [name, setName] = useState(true);
 
     useEffect(() => {
         if (shouldRedirect) {
@@ -258,6 +259,13 @@ export const PairComparisonCriterias: React.FC = () => {
     const handleSetPairComparisonCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
 
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
+
         for (let i = 0; i < 10; i++) {
             dataPairComparisonCriteria.push(Number(rowData[i].crit1))
             dataPairComparisonCriteria.push(Number(rowData[i].crit2))
@@ -436,6 +444,13 @@ export const PairComparisonCriterias: React.FC = () => {
 
     const handleUpdatePairComparisonCriteria:MouseEventHandler<HTMLButtonElement> = async (event)=>{
         event.preventDefault();
+
+        if (inputOne==="") {
+            setName(false)
+            return
+        } else {
+            setName(true)
+        }
 
         for (let i = 0; i < 10; i++) {
             dataPairComparisonCriteria.push(Number(rowData[i].crit1))
@@ -741,6 +756,14 @@ export const PairComparisonCriterias: React.FC = () => {
                         </div>
                     </div>
                 </div>
+
+                {
+                    !name && (
+                        <div>
+                            <h5 style={{color: "red"}}>Дайте название методу</h5>
+                        </div>
+                    )
+                }
 
                 <div className="alert alert-dark Che row">
                     <div className="col">
