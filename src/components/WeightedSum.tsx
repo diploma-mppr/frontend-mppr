@@ -628,12 +628,10 @@ function countWeight (matrix: Array<Array<number>>, criteriasWeight: Array<numbe
 
 function findBestOption(pointArray: Array<number>) {
     let bestOption: number = 0;
-
     for (let i = 0; i < pointArray.length; i++) {
         if (pointArray[i] > pointArray[bestOption]) {
             bestOption = i;
         }
     }
-
     return ("Лучший вариант: " + (bestOption + 1));
 }
