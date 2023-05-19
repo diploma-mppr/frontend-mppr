@@ -614,11 +614,8 @@ function NormingCrits (matrix: Array<Array<number>>){
 function countWeight (matrix: Array<Array<number>>, criteriasWeight: Array<number>)
 {
     let totalPoints: Array<number> = [0,0,0]
-
-    for (let i = 0; i < matrix.length; i++)
-    {
-        for (let j = 0; j < matrix[i].length; j++)
-        {
+    for (let i = 0; i < matrix.length; i++) {
+        for (let j = 0; j < matrix[i].length; j++) {
             totalPoints[j] = totalPoints[j] + criteriasWeight[i]*matrix[i][j];
         }
     }
