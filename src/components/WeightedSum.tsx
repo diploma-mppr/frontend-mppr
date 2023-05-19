@@ -594,16 +594,14 @@ function NormingCrits (matrix: Array<Array<number>>){
     for (let i = 0; i < matrix.length; i++)
     {
         maxPoint = 0;
-        for (let j = 0; j < matrix[i].length; j++)
-        {
+        for (let j = 0; j < matrix[i].length; j++) {
             if (matrix[i][j] > maxPoint)
             {
                 maxPoint = matrix[i][j];
             }
         }
 
-        for (let j = 0; j < matrix[i].length; j++)
-        {
+        for (let j = 0; j < matrix[i].length; j++) {
             matrix[i][j] = matrix[i][j]/maxPoint;
         }
     }
