@@ -233,7 +233,7 @@ export const Pareto: React.FC = () => {
     ]);
 
     const critsVarsRows = [
-        { crits: 'Критерий 1', var1: critsVars[0][0], var2: critsVars[1][0], var3: critsVars[2][0]},
+        { crits: "Критерий 1", var1: critsVars[0][0], var2: critsVars[1][0], var3: critsVars[2][0]},
         { crits: 'Критерий 2', var1: critsVars[0][1], var2: critsVars[1][1], var3: critsVars[2][1]},
         { crits: 'Критерий 3', var1: critsVars[0][2], var2: critsVars[1][2], var3: critsVars[2][2]},
     ];
@@ -380,20 +380,20 @@ export const Pareto: React.FC = () => {
 
             <div style={{height: "196px"}}>
                 <div style={containerStyle}>
-
                     <div style={gridStyle} className="ag-theme-alpine">
                         <AgGridReact
                             ref={gridRef}
-                            onCellValueChanged={(val)=>{
-                                setRowData((old)=>{
-                                    return old.map(el=>{
-                                        if(val?.data && el.crits === val?.data?.crits){
-                                            return val.data
-                                        }
-                                        return el
-                                    })
-                                })
-                            }}
+                            // onCellValueChanged={(val)=>{
+                            //     setRowData((old)=>{
+                            //         return old.map(el=>{
+                            //             if(val?.data && el.crits === val?.data?.crits){
+                            //                 // return val.data
+                            //                 return el
+                            //             }
+                            //             return el
+                            //         })
+                            //     })
+                            // }}
                             rowData={rowData}
                             columnDefs={columnDefs}
                             defaultColDef={defaultColDef}
@@ -433,12 +433,11 @@ export const Pareto: React.FC = () => {
 
 
             </div>
-                {/*<button className="btn btn-primary" onClick={onBtExport}>*/}
-                {/*    Export to Excel*/}
-                {/*</button>*/}
+                <button className="btn btn-primary" onClick={onBtExport}>
+                    Export to Excel
+                </button>
                 <div className="p-4"></div>
             </div>
-            {/*</div>*/}
         </div>
     )
 }
